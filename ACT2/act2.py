@@ -10,9 +10,8 @@ from tkinter import END, messagebox
 
 root =tk.Tk()
 root.title("Practica_2")
-valor = 0
+
 def Mes():
-    global valor
     try:
         valor = int(txtNumero.get());
         if valor == 1:
