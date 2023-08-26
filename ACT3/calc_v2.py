@@ -73,10 +73,13 @@ class Calculator:
             self.display.insert(tk.END, str(converted_value))
 
             self.history.append((f"Conversion to {base} ({decimal_value})", converted_value))
-            self.update_history_display()
+            self.display_bases()  # Call the method to update base conversions
+
+            return converted_value
 
         except Exception:
             messagebox.showerror("Error", "Invalid Input")
+    
             
     def trigonometric_function(self, function):
         try:
@@ -96,7 +99,7 @@ class Calculator:
             self.display.insert(tk.END, str(result))
 
             self.history.append((f"{function}({angle})", result))
-            self.update_history_display()
+            self.display_bases()
 
         except Exception:
             messagebox.showerror("Error", "Invalid Input")
@@ -109,15 +112,20 @@ class Calculator:
             self.display.insert(tk.END, str(result))
 
             self.history.append((expression, result))
-            self.update_history_display()
+            self.display_bases()
 
         except Exception:
             messagebox.showerror("Error", "Invalid Input")
 
-    def update_history_display(self):
-        self.history_display.delete(1.0, tk.END)
-        for entry in self.history:
-            self.history_display.insert(tk.END, f"{entry[0]} = {entry[1]}\n")
+    def display_bases(self):
+        decimal_value = int(self.display.get())
+        base_labels = ['bin', 'oct', 'hex', 'dec']
+        
+        self.history_display.delete(1.0, tk.END)  # Clear history display
+        
+        for base in base_labels:
+            converted_value = self.convert_to_base(base)
+            self.history_display.insert(tk.END, f"Conversion to {base}: {converted_value}\n")
 
     def clear_buttons(self):
         for button in self.buttons:
