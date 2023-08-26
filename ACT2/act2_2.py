@@ -12,6 +12,8 @@ def Mes():
     mes = 0
     numero = int(entrada.get())
     try:
+        if (numero>12 or numero<1):
+            messagebox.showerror(message="Dato incorrecto", title = "Error")
         if numero == 1:
             mes = "Enero"
         elif numero == 2:
@@ -36,9 +38,9 @@ def Mes():
             mes = "Noviembre"
         elif numero == 12:
             mes = "Diciembre"
-        messagebox.showinfo("Resultado", mes)
-    except ValueError:
-        messagebox.showerror(message="Dato incorrecto", title = "Error")
+            messagebox.showinfo("Resultado", mes)
+    except:
+        messagebox.showinfo(message="Dato incorrecto", title = "Error")
 
 #ventana
 root = tk.Tk()
