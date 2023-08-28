@@ -19,7 +19,7 @@ class Calculator:
 
         self.history_display = tk.Text(self.window, width=50, height=10, borderwidth=5)
         self.history_display.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-
+ 
         self.buttons = []
 
         self.history = []
@@ -66,6 +66,9 @@ class Calculator:
             self.display.insert(tk.END, operation)
             
     def convert_to_base(self, base):
+        self.history_display = tk.Text(self.window, width=50, height=10, borderwidth=5)
+        self.history_display.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
+
         try:
             decimal_value = int(self.display.get())
             converted_value = format(decimal_value, base)
@@ -74,9 +77,6 @@ class Calculator:
 
             self.history.append((f"Conversion to {base} ({decimal_value})", converted_value))
             self.display_bases()  # Call the method to update base conversions
-
-            return converted_value
-
         except Exception:
             messagebox.showerror("Error", "Invalid Input")
     
@@ -110,21 +110,38 @@ class Calculator:
             result = eval(expression)
             self.display.delete(0, tk.END)
             self.display.insert(tk.END, str(result))
-
-            self.history.append((expression, result))
             self.display_bases()
 
+            self.history.append((expression, result))
         except Exception:
             messagebox.showerror("Error", "Invalid Input")
+    
+    def decimal_to_octal(decimal_num):
+        if decimal_num == 0:
+            return '0'  # Manejar caso especial de decimal 0
+    
+        octal_digits = []  # Almacenar los dígitos octales en una lista
+    
+        while decimal_num > 0:
+            remainder = decimal_num % 8  # Obtener el residuo al dividir por 8
+            octal_digits.append(str(remainder))  # Agregar el dígito a la lista
+            decimal_num //= 8  # Actualizar el número decimal dividiéndolo por 8
+    
+        octal_digits.reverse()  # Revertir la lista para obtener la representación correcta
+    
+        octal_str = ''.join(octal_digits)  # Convertir la lista de dígitos en una cadena
+    
+        return octal_str
 
     def display_bases(self):
         decimal_value = int(self.display.get())
         base_labels = ['bin', 'oct', 'hex', 'dec']
+
         
         self.history_display.delete(1.0, tk.END)  # Clear history display
         
         for base in base_labels:
-            converted_value = self.convert_to_base(base)
+            converted_value = self.convert_to_base(decimal_value, base)
             self.history_display.insert(tk.END, f"Conversion to {base}: {converted_value}\n")
 
     def clear_buttons(self):
