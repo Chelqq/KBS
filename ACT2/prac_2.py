@@ -1,61 +1,46 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Aug 21 13:56:08 2023
-
-@author: Chris J
-"""
-
 import tkinter as tk
 from tkinter import messagebox
 
-def Mes():
-    mes = 0
-    numero = int(entrada.get())
+def get_month():
     try:
-        if (numero>12 or numero<1):
-            messagebox.showerror(message="Dato incorrecto", title = "Error")
-        if numero == 1:
-            mes = "Enero"
-        elif numero == 2:
-            mes = "Febrero"
-        elif numero == 3:
-            mes = "Marzo"
-        elif numero == 4:
-            mes = "Abril"
-        elif numero == 5:
-            mes = "Mayo"
-        elif numero == 6:
-            mes = "Junio"
-        elif numero == 7:
-            mes = "Julio"
-        elif numero == 8:
-            mes = "Agosto"
-        elif numero == 9:
-            mes = "Septiembre"
-        elif numero == 10:
-            mes = "Octubre"
-        elif numero == 11:
-            mes = "Noviembre"
-        elif numero == 12:
-            mes = "Diciembre"
+        numero = int(entrada.get())
+        meses = {
+            1: "Enero",
+            2: "Febrero",
+            3: "Marzo",
+            4: "Abril",
+            5: "Mayo",
+            6: "Junio",
+            7: "Julio",
+            8: "Agosto",
+            9: "Septiembre",
+            10: "Octubre",
+            11: "Noviembre",
+            12: "Diciembre"
+        }
+        
+        if numero < 1 or numero > 12:
+            messagebox.showerror(message="Número incorrecto", title="Error")
+        else:
+            mes = meses[numero]
             messagebox.showinfo("Resultado", mes)
-    except:
-        messagebox.showinfo(message="Dato incorrecto", title = "Error")
+    except ValueError:
+        messagebox.showerror(message="Dato incorrecto", title="Error")
 
-#ventana
+# Ventana
 root = tk.Tk()
 root.title("Practica_2")
 
-#Msg e input
+# Etiqueta e input
 etiqueta = tk.Label(root, text="Introduce un número del 1 al 12:")
 etiqueta.pack()
 
 entrada = tk.Entry(root)
 entrada.pack()
 
-# Button para resultado
-boton = tk.Button(root, text="Obtener Mes", command=Mes)
+# Botón para obtener el mes
+boton = tk.Button(root, text="Obtener Mes", command=get_month)
 boton.pack()
 
-#mainloop
+# Mainloop
 root.mainloop()
