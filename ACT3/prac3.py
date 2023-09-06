@@ -148,7 +148,7 @@ def factorial():
 ventana =Tk()
 ventana.title("Calculadora")
 ventana.geometry("+500+80")
-color_rgb=(255, 239, 213)
+color_rgb=(128 , 128, 255)
 color_Hex="#{:02X}{:02X}{:02X}".format(*color_rgb)
 #Estilos
 
