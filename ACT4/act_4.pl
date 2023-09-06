@@ -1,12 +1,17 @@
-% Definición de un árbol binario
-arbol_binario(vacio).
-arbol_binario(nodo(Izquierda, _, Derecha)) :-
-    arbol_binario(Izquierda),
-    arbol_binario(Derecha).
+%Bisabuelos_nivel1
+padrede('Jose','Luis').
+madrede('Maria','Luis').
+padrede('Jose','Karla').
+madrede('Maria','Karla').
 
-% Regla para calcular la altura de un árbol binario
-altura_arbol(vacio, 0).
-altura_arbol(nodo(Izquierda, _, Derecha), Altura) :-
-    altura_arbol(Izquierda, AlturaIzq),
-    altura_arbol(Derecha, AlturaDer),
-    Altura is max(AlturaIzq, AlturaDer) + 1.
+
+
+
+
+hijode(A,B):- padrede(B,A).
+hermanode(A,B):- padrede(C,A), padrede(C,B), A\==B.
+tiode(A,B):- hermanode(A,C), padrede(C,B).
+abuelode(A,B):- padrede(A,C), padrede(C,B).
+bisabuelode(A,B):- padrede(A,C), padrede(C,D), padrede(D,B).
+casadocon(A,B):- padrede(A,C), padrede(B,C).
+esfeliz(A):- casadocon(A,_).
