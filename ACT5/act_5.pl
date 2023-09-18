@@ -28,38 +28,41 @@ mujer('Ivanka trump').
 mujer('Kamala harris').
 
 %CEO
-:- discontiguous Ceo_de/2.
-Ceo_de('Elon musk','Tim cook').
+:- discontiguous ceo_de/2.
+ceo_de('Elon musk','Tim cook').
 
-
-%Director_gral
-:- discontiguous Director_de/2.
-Director_de('Tim cook','Barak obama').
-Director_de('Tim cook','Joe bezos').
-Director_de('Tim cook','Donald trump').
-Director_de('Tim cook','Joe biden').
-Director_de('Tim cook','Kamala harris').
+%Director general
+:- discontiguous director_de/2.
+director_de('Tim cook','Barak obama').
+director_de('Tim cook','Joe bezos').
+director_de('Tim cook','Donald trump').
+director_de('Tim cook','Joe biden').
+director_de('Tim cook','Kamala harris').
 
 %Gerente
-:- discontiguous Gerente_de/2.
-Gerente_de('Jared Kushner','Mark zuckerberg').
-Gerente_de('Barak obama','Mark zuckerberg').
-Gerente_de('Kamala harris','Mark zuckerberg').
-Gerente_de('Mark zuckerberg','Jared Kushner').
-Gerente_de('Joe biden','Jared Kushner').
-Gerente_de('Joe bezos','Jared Kushner').
+:- discontiguous gerente_de/2.
+gerente_de('Jared Kushner','Mark zuckerberg').
+gerente_de('Barak obama','Mark zuckerberg').
+gerente_de('Kamala harris','Mark zuckerberg').
+gerente_de('Mark zuckerberg','Jared Kushner').
+gerente_de('Joe biden','Jared Kushner').
+gerente_de('Joe bezos','Jared Kushner').
 
-%Super
-:- discontiguous Supervisor_de/2.
-Supervisor_de('Mark zuckerberg','Steve wozniak').
-Supervisor_de('Mark zuckerberg','Arvind krisman').
-Supervisor_de('Kamala harris','Arvind krisman').
-Supervisor_de('Jared Kushner','Steve wozniak').
-Supervisor_de('Jared Kushner','Arvind krisman').
-Supervisor_de('Kamala harris','Steve wozniak').
+%Supervisor
+:- discontiguous supervisor_de/2.
+supervisor_de('Mark zuckerberg','Steve wozniak').
+supervisor_de('Mark zuckerberg','Arvind krisman').
+supervisor_de('Kamala harris','Arvind krisman').
+supervisor_de('Jared Kushner','Steve wozniak').
+supervisor_de('Jared Kushner','Arvind krisman').
+supervisor_de('Kamala harris','Steve wozniak').
 
 %Reglas_de_inferencia
-Ceo_de(X, Y) :- Director_de(X, Z), Gerente_de(Z, Y).
-Director_de(X, Y) :- Gerente_de(X, Z), Supervisor_de(Z, Y).
-Ceo(X, Y) :- Ceo_de(X, Y).
+
+es_director(X) :- director_de(X, _), !.
+es_gerente(X) :- gerente_de(X, _), !.
+es_supervisor(X) :- supervisor_de(X, _), !.
+es_ingeniero(X) :- hombre(X), (supervisor_de(_, X) ; gerente_de(_, X)), !.
+
+ceo(X) :- ceo_de(X, _), !.
 
