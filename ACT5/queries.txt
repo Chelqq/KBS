@@ -1,0 +1,5 @@
+gerente_de(X, 'Steve wozniak').
+supervisor_de(X, 'Arvind krisman').
+es_supervisor(X).
+ceo(X).
+es_director(X).
