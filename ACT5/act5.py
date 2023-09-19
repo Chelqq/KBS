@@ -1,39 +1,26 @@
-import sys
-import heapq
+import pytholog as pl
 
-class Nodo:
-    def __init__(self, objetivo, regla=None):
-        self.objetivo = objetivo
-        self.regla = regla
-        self.hijos = []
+new_kb = pl.KnowledgeBase("TESLA")
+new_kb([#CEO
+    "ceo_de(Elon musk,Tim cook)",
+    #Director general
+    "director_de(Tim cook,Barak obama)",
+    "director_de(Tim cook,Joe bezos)",
+    "director_de(Tim cook,Donald trump)",
+    "director_de(Tim cook,Joe biden)",
+    "director_de(Tim cook,Kamala harris)",
+    #Gerente
+    "gerente_de(Jared Kushner,Mark zuckerberg)",
+    "gerente_de(Barak obama,Mark zuckerberg)",
+    "gerente_de(Kamala harris,Mark zuckerberg)",
+    "gerente_de(Mark zuckerberg,Jared Kushner)",
+    "gerente_de(Joe biden,Jared Kushner)",
+    "gerente_de(Joe bezos,Jared Kushner)",
+    #Supervisor
+    "supervisor_de(Mark zuckerberg,Steve wozniak)",
+    "supervisor_de(Mark zuckerberg,Arvind krisman)",
+    "supervisor_de(Kamala harris,Arvind krisman)",
+    "supervisor_de(Jared Kushner,Steve wozniak)",
+    "supervisor_de(Jared Kushner,Arvind krisman)",
+    "supervisor_de(Kamala harris,Steve wozniak)"])
 
-class Arbol:
-    def __init__(self, raiz):
-        self.raiz = raiz
-
-class Regla:
-    def __init__(self, cabeza, cuerpo):
-        self.cabeza = cabeza
-        self.cuerpo = cuerpo
-
-def construir_arbol(base_conocimientos, objetivo):
-    raiz = Nodo(objetivo)
-    arbol = Arbol(raiz)
-    # Implementa el resto de la lógica aquí
-    return arbol
-
-def imprimir_arbol(nodo, nivel=0):
-    if nodo is None:
-        return
-    print(" " * nivel + str(nodo.objetivo))
-    for hijo in nodo.hijos:
-        imprimir_arbol(hijo, nivel + 1)
-
-base_conocimientos = [
-    Regla("padre(juan,pedro)", ["juan", "pedro"]),
-    Regla("padre(pedro,pepe)", ["pedro", "pepe"]),
-]
-
-objetivo = "padre(juan,pepe)"
-arbol = construir_arbol(base_conocimientos, objetivo)
-imprimir_arbol(arbol.raiz)
