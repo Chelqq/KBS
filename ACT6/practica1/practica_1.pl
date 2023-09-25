@@ -1,0 +1,2 @@
+esHombre(juan).
+esHombre(pedro).
