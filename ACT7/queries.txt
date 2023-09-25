@@ -26,51 +26,58 @@ miembro(Elem, Lista, Pos):Similar a miembro/2, pero también devuelve la posici�
 
 borrarN(Pos, L1, L2):Borra el elemento en la posición Pos de la lista L1, generando L2.
 -----------------------------------------
-Consulta para verificar si un elemento pertenece a una lista:
+miembro/2:
+Consulta para verificar si 'd' es miembro de la lista [a, b, c, d, e]:
 miembro(d, [a, b, c, d, e]).
 
-Consulta para verificar si un elemento pertenece a una lista que contiene una lista anidada:
-miembro(d, [a, b, c, [d, e]]).
-
-Consulta para verificar si un elemento no pertenece a una lista:
-miembro(f, [a, b, c]).
-
-Consulta para contar el número de elementos en una lista:
+nel/2:
+Consulta para contar el número de elementos en la lista [a, b, [c, d], e]:
 nel([a, b, [c, d], e], N).
 
-Consulta para verificar si un término dado es una lista:
+es_lista/1:
+Consulta para verificar si [a, b, [c, d], e] es una lista:
 es_lista([a, b, [c, d], e]).
 
-Consulta para concatenar dos listas:
+concatena/3:
+Consulta para concatenar [a, b, c] y [d, e] y obtener una nueva lista:
 concatena([a, b, c], [d, e], L).
 
-Consulta para encontrar el último elemento de una lista:
-ultimo(X, [a, b, c, d]).
+ultimo/2:
+Consulta para encontrar el último elemento de la lista [a, b, c, d, e]:
+ultimo(X, [a, b, c, d, e]).
 
-Consulta para calcular la inversa de una lista:
-inversa([a, b, c], Inver).
+inversa/2:
+Consulta para obtener la inversa de la lista [1, 2, 3]:
+inversa([1, 2, 3], L).
 
-Consulta para borrar un elemento de una lista:
-borrar(b, [a, b, c, d], L).
+borrar/3:
+Consulta para eliminar el elemento 'b' de la lista [a, b, c]:
+borrar(b, [a, b, c], L).
 
-Consulta para verificar si una lista es un subconjunto de otra:
-subconjunto([a, b], [a, b, c, d, e]).
+subconjunto/2:
+Consulta para verificar si [a, b] es un subconjunto de [a, b, c, d]:
+subconjunto([a, b], [a, b, c, d]).
 
-Consulta para insertar un elemento en una lista:
-insertar(x, [a, b, c], L). 
-----------------------------------
+insertar/3:
+Consulta para insertar 'z' en la lista [a, b, c] y obtener una nueva lista:
+insertar(z, [a, b, c], L).
 
-Consulta para verificar si una lista es una permutación de otra:
-permutacion([a, b, c], [b, a, c]).
+permutacion/2:
+Consulta para verificar si [1, 2, 3] es una permutación de [3, 2, 1]:
+permutacion([1, 2, 3], [3, 2, 1])
 
-Consulta para sustituir un elemento por otro en una lista:
-sust(b, x, [a, b, c, b, d], L).
+sust/4:
+Consulta para sustituir todas las ocurrencias de 'a' por 'x' en la lista [a, b, a, c, a]:
+sust(a, x, [a, b, a, c, a], L).
 
-Consulta para calcular la unión de dos listas:
-union([a, b, c], [b, c, d], L).
+union/3:
+Consulta para realizar la unión de las listas [a, b, c] y [c, d, e]:
+union([a, b, c], [c, d, e], L).
 
-Consulta para verificar si un elemento pertenece a una lista y obtener su posición:
+miembro/3:
+Consulta para encontrar la posición de 'c' en la lista [a, b, c, d, e]:
 miembro(c, [a, b, c, d, e], Pos).
 
-Consulta para borrar un elemento en una posición específica de una lista:
+borrarN/3:
+Consulta para eliminar el elemento en la posición 3 de la lista [a, b, c, d, e]:
 borrarN(3, [a, b, c, d, e], L).
