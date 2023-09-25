@@ -1,0 +1,10 @@
+enfermo(manuel,gripe).
+tiene_sintoma(alicia,cansancio).
+sintoma(fiebre,gripe).
+sintoma(tos,gripe).
+sintoma(cansancio,anemia).
+elimina(vitaminas,cansancio).
+elimina(jarabe,tos).
+recetar(X,Y):-enfermo(Y,A),curar(X,A).
+curar(X,Y):-elimina(X,A),sintoma(A,Y). 
+enfermo(X,Y):-tiene_sintoma(X,Z),sintoma(Z,Y).
