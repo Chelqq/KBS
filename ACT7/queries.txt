@@ -1,0 +1,76 @@
+miembro(Elem,Lista):Verifica si un elemento Elem pertenece a la lista Lista.
+
+nel(Lista, N):Calcula el número de elementos en la lista Lista y lo almacena en N.
+
+es_lista(Lista):Comprueba si un término dado es una lista.
+
+concatena(L1, L2, L3):Concatena dos listas L1 y L2, dando como resultado una nueva lista L3.
+
+ultimo(Elem, Lista):Encuentra el último elemento Elem en la lista Lista.
+
+inversa(Lista, Inver):Calcula la inversa de una lista Lista y la almacena en Inver.
+
+borrar(Elem, L1, L2):Borra un elemento Elem de la lista L1, generando una nueva lista L2.
+
+subconjunto(L1, L2):Comprueba si L1 es un subconjunto de L2.
+
+insertar(E, L1, L2):Inserta un elemento E en la lista L1, obteniendo una nueva lista L2.
+
+permutacion(L1, L2):Verifica si L2 es una permutación de L1.
+
+sust(E1, E2, L1, L2):Sustituye todas las ocurrencias del elemento E1 por E2 en la lista L1, generando L2.
+
+union(L1, L2, L3):Calcula la unión de dos listas L1 y L2, almacenando el resultado en L3.
+
+miembro(Elem, Lista, Pos):Similar a miembro/2, pero también devuelve la posición del elemento en la lista.
+
+borrarN(Pos, L1, L2):Borra el elemento en la posición Pos de la lista L1, generando L2.
+-----------------------------------------
+Consulta para verificar si un elemento pertenece a una lista:
+miembro(d, [a, b, c, d, e]).
+
+Consulta para verificar si un elemento pertenece a una lista que contiene una lista anidada:
+miembro(d, [a, b, c, [d, e]]).
+
+Consulta para verificar si un elemento no pertenece a una lista:
+miembro(f, [a, b, c]).
+
+Consulta para contar el número de elementos en una lista:
+nel([a, b, [c, d], e], N).
+
+Consulta para verificar si un término dado es una lista:
+es_lista([a, b, [c, d], e]).
+
+Consulta para concatenar dos listas:
+concatena([a, b, c], [d, e], L).
+
+Consulta para encontrar el último elemento de una lista:
+ultimo(X, [a, b, c, d]).
+
+Consulta para calcular la inversa de una lista:
+inversa([a, b, c], Inver).
+
+Consulta para borrar un elemento de una lista:
+borrar(b, [a, b, c, d], L).
+
+Consulta para verificar si una lista es un subconjunto de otra:
+subconjunto([a, b], [a, b, c, d, e]).
+
+Consulta para insertar un elemento en una lista:
+insertar(x, [a, b, c], L). 
+----------------------------------
+
+Consulta para verificar si una lista es una permutación de otra:
+permutacion([a, b, c], [b, a, c]).
+
+Consulta para sustituir un elemento por otro en una lista:
+sust(b, x, [a, b, c, b, d], L).
+
+Consulta para calcular la unión de dos listas:
+union([a, b, c], [b, c, d], L).
+
+Consulta para verificar si un elemento pertenece a una lista y obtener su posición:
+miembro(c, [a, b, c, d, e], Pos).
+
+Consulta para borrar un elemento en una posición específica de una lista:
+borrarN(3, [a, b, c, d, e], L).
