@@ -77,8 +77,8 @@ madrede('Hermione','Rose').
 madrede('Victoire','Teddy').
 
 %Conexiones
-bisabuelo(X, Y) :- padrede(X, Z), padrede(Z, Y).
-bisabuela(X, Y) :- madrede(X, Z), padrede(Z, Y).
+bisabuelo(X, Y) :- padrede(X, Z), abuelo(Z, Y).
+bisabuela(X, Y) :- madrede(X, Z), abuela(Z, Y).
 abuelo(X, Y) :- padrede(X, Z), padrede(Z, Y).
 abuela(X, Y) :- madrede(X, Z), padrede(Z, Y).
 padre(X, Y) :- padrede(X, Y).
@@ -152,3 +152,11 @@ nieta_de(X, Y) :-
 nieto_de(X, Y) :- 
     hombre(X),              % X es un hombre
     abuelo(Y, X).           % Y es abuelo de X
+
+
+/* QUERIES DE PRUEBA
+    hermano_de(X, 'Ron').
+    tio_de(X, 'Teddy').
+    primo_de(X, 'James').
+    nieto_de(X, 'Molly prewett').
+*/
