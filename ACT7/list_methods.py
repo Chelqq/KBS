@@ -13,212 +13,133 @@ Menú
 8- Mostar Cabeza
 9- Mostrar Final
 10-Salir
-"""
-from os import system
-import time
-class Nodo:
-    def __init__(self, valor):
-        self.valor = valor
-        self.siguiente = None
+"""# Definir una lista vacía
+mi_lista = []
 
-class ListaEnlazada:
-    def __init__(self):
-        self.cabeza = None
-        self.final = None
+# Función para insertar elementos en la lista
+mi_lista = []
 
-    def insertar(self, valor):
-        nuevo_nodo = Nodo(valor)
-        if not self.cabeza:
-            self.cabeza = nuevo_nodo
-            self.final = nuevo_nodo
-        else:
-            self.final.siguiente = nuevo_nodo
-            self.final = nuevo_nodo
+# Función para insertar elementos enteros en la lista
+def insertar_en_lista():
+    try:
+        elemento = int(input("Ingrese el elemento entero que desea insertar: "))
+        mi_lista.append(elemento)
+        print("Elemento insertado en la lista.")
+    except ValueError:
+        print("Error: Debe ingresar un valor entero.")
 
-    def buscar(self, valor):
-        actual = self.cabeza
-        while actual:
-            if actual.valor == valor:
-                return True
-            actual = actual.siguiente
-        return False
+# Función para buscar un elemento en la lista
+def buscar_en_lista():
+    elemento = int(input("Ingrese el elemento que desea buscar: "))
+    if elemento in mi_lista:
+        print(f"{elemento} está en la lista.")
+    else:
+        print(f"{elemento} no está en la lista.")
 
-    def editar(self, valor_viejo, valor_nuevo):
-        actual = self.cabeza
-        while actual:
-            if actual.valor == valor_viejo:
-                actual.valor = valor_nuevo
-                return True
-            actual = actual.siguiente
-        return False
+# Función para editar un elemento en la lista
+def editar_lista():
+    indice = int(input("Ingrese el índice del elemento que desea editar: "))
+    if 0 <= indice < len(mi_lista):
+        nuevo_valor = input("Ingrese el nuevo valor: ")
+        mi_lista[indice] = nuevo_valor
+        print("Elemento editado correctamente.")
+    else:
+        print("Índice fuera de rango.")
 
-    def eliminar_inicio(self):
-        if not self.cabeza:
-            return False
-        if self.cabeza == self.final:
-            self.cabeza = None
-            self.final = None
-        else:
-            self.cabeza = self.cabeza.siguiente
-        return True
+# Función para eliminar el primer y último elemento de la lista
+def eliminar_inicio():
+    if len(mi_lista) > 0:
+        primer_elemento = mi_lista.pop(0)
+        print(f"Elemento eliminado al inicio: {primer_elemento}")
+    else:
+        print("La lista está vacía.")
 
-    def eliminar_final(self):
-        if not self.final:
-            return False
-        if self.cabeza == self.final:
-            self.cabeza = None
-            self.final = None
-        else:
-            actual = self.cabeza
-            while actual.siguiente != self.final:
-                actual = actual.siguiente
-            actual.siguiente = None
-            self.final = actual
-        return True
+def eliminar_final():
+    if len(mi_lista) > 0:
+        ultimo_elemento = mi_lista.pop()
+        print(f"Elemento eliminado al final: {ultimo_elemento}")
+    else:
+        print("La lista está vacía.")
 
-    def buscar_repetidos(self):
-        valores = set()
-        repetidos = set()
-        actual = self.cabeza
-        while actual:
-            if actual.valor in valores:
-                repetidos.add(actual.valor)
-            else:
-                valores.add(actual.valor)
-            actual = actual.siguiente
-        return list(repetidos)
+# Función para buscar números repetidos en la lista
+def buscar_numeros_repetidos():
+    numeros_repetidos = []
+    for elemento in mi_lista:
+        if mi_lista.count(elemento) > 1 and elemento not in numeros_repetidos:
+            numeros_repetidos.append(elemento)
+    if numeros_repetidos:
+        print("Números repetidos en la lista:", numeros_repetidos)
+    else:
+        print("No hay números repetidos en la lista.")
 
-    def ordenar_ascendente(self):
-        valores = []
-        actual = self.cabeza
-        while actual:
-            valores.append(actual.valor)
-            actual = actual.siguiente
-        valores.sort()
-        return valores
+# Función para ordenar la lista en orden ascendente
+def ordenar_ascendente():
+    listaint = [int(elemento) for elemento in mi_lista]
+    listaint.sort()
+    listastr = [str(elem) for elem in listaint]
+    mi_lista = listastr
+    print("Lista ordenada en orden ascendente:", listastr)
 
-    def ordenar_descendente(self):
-        valores = []
-        actual = self.cabeza
-        while actual:
-            valores.append(actual.valor)
-            actual = actual.siguiente
-        valores.sort(reverse=True)
-        return valores
+# Función para ordenar la lista en orden descendente
+def ordenar_descendente():
+    listaint = [int(elemento) for elemento in mi_lista]
+    listaint.sort(reverse=True)
+    listastr = [str(elem) for elem in listaint]
+    mi_lista = listastr
+    print("Lista ordenada en orden descendente:", listastr)
 
-    def mostrar_cabeza(self):
-        if self.cabeza:
-            return self.cabeza.valor
-        else:
-            return None
+# Función para mostrar el primer elemento de la lista (cabeza)
+def mostrar_cabeza():
+    if len(mi_lista) > 0:
+        print("Primer elemento de la lista:", mi_lista[0])
+    else:
+        print("La lista está vacía.")
 
-    def mostrar_final(self):
-        if self.final:
-            return self.final.valor
-        else:
-            return None
+# Función para mostrar el último elemento de la lista
+def mostrar_final():
+    if len(mi_lista) > 0:
+        print("Último elemento de la lista:", mi_lista[-1])
+    else:
+        print("La lista está vacía.")
 
-if __name__ == "__main__":
-    lista = ListaEnlazada()
+# Bucle principal
+while True:
+    print("\nOperaciones disponibles:")
+    print("1- Insertar en Lista")
+    print("2- Buscar en Lista")
+    print("3- Editar Lista")
+    print("4- Eliminar al inicio")
+    print("5- Eliminar al Final")
+    print("6- Buscar números repetidos")
+    print("7- Ordenar Ascendente")
+    print("8- Ordenar Descendente")
+    print("9- Mostrar Cabeza")
+    print("10- Mostrar Final")
+    print("11- Salir")
 
-    while True:
-        time.sleep(2.5)   
-        system("cls")
-        print("\nMenú:")
-        print("1- Insertar en Lista")
-        print("2- Buscar en Lista")
-        print("3- Editar Lista")
-        print("4- Eliminar al inicio")
-        print("5- Eliminar al final")
-        print("6- Buscar números repetidos")
-        print("7- Ordenar Ascendente")
-        print("8- Ordenar Descendente")
-        print("9- Mostrar Cabeza")
-        print("10- Mostrar Final")
-        print("11- Salir")
+    opcion = input("Seleccione una operación (1-10): ")
 
-        texto=input("Selecciona una opción: ")
-        try:
-            opcion = int(texto)
-            if opcion>=0:
-                opcion = int(texto)
-            else:
-                print("ingresó un número negativo")
-        except ValueError:
-            print("No ingresó un entero")
-
-        
-        if opcion == 1:
-            texto=input("Numero a insertar ")
-            try:
-                valor = int(texto)
-                if valor>=0:
-                    valor = int(texto)
-                else:
-                    print("ingresó un número negativo")
-            except ValueError:
-                print("No ingresó un entero")
-            lista.insertar(valor)
-            print("Valor insertado en la lista.")
-
-        elif opcion == 2:
-            valor = int(input("Ingrese el valor a buscar: "))
-            if lista.buscar(valor):
-                print("El valor está en la lista.")
-            else:
-                print("El valor no está en la lista.")
-
-        elif opcion == 3:
-            valor_viejo = int(input("Ingrese el valor a editar: "))
-            valor_nuevo = int(input("Ingrese el nuevo valor: "))
-            if lista.editar(valor_viejo, valor_nuevo):
-                print("Valor editado en la lista.")
-            else:
-                print("El valor a editar no se encontró en la lista.")
-
-        elif opcion == 4:
-            if lista.eliminar_inicio():
-                print("Valor eliminado al inicio de la lista.")
-            else:
-                print("La lista está vacía.")
-
-        elif opcion == 5:
-            if lista.eliminar_final():
-                print("Valor eliminado al final de la lista.")
-            else:
-                print("La lista está vacía.")
-
-        elif opcion == 6:
-            repetidos = lista.buscar_repetidos()
-            if repetidos:
-                print("Números repetidos en la lista:", repetidos)
-            else:
-                print("No hay números repetidos en la lista.")
-
-        elif opcion == 7:
-            ascendente = lista.ordenar_ascendente()
-            print("Lista ordenada en orden ascendente:", ascendente)
-
-        elif opcion == 8:
-            descendente = lista.ordenar_descendente()
-            print("Lista ordenada en orden descendente:", descendente)
-
-        elif opcion == 9:
-            cabeza = lista.mostrar_cabeza()
-            if cabeza is not None:
-                print("Cabeza de la lista:", cabeza)
-            else:
-                print("La lista está vacía.")
-
-        elif opcion == 10:
-            final = lista.mostrar_final()
-            if final is not None:
-                print("Final de la lista:", final)
-            else:
-                print("La lista está vacía.")
-
-        elif opcion == 11:
-            break
-
-        else:
-            print("Opción no válida. Por favor, seleccione una opción válida.")
+    if opcion == "1":
+        insertar_en_lista()
+    elif opcion == "2":
+        buscar_en_lista()
+    elif opcion == "3":
+        editar_lista()
+    elif opcion == "4":
+        eliminar_inicio()
+    elif opcion == "6":
+        buscar_numeros_repetidos()
+    elif opcion == "7":
+        ordenar_ascendente()
+    elif opcion == "8":
+        ordenar_descendente()
+    elif opcion == "9":
+        mostrar_cabeza()
+    elif opcion == "10":
+        mostrar_final()
+    elif opcion == "5":
+        eliminar_final()
+    elif opcion == "11":
+        break
+    else:
+        print("Opción no válida. Por favor, seleccione una opción válida.")
